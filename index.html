@@ -7,395 +7,269 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#0b1020;          /* page background */
-      --surface:#0f172a;     /* section background */
-      --card:#0c1326;        /* card background */
-      --text:#e6eefc;        /* primary text */
-      --muted:#a5b4fc;       /* secondary text */
-      --line:#1f2a44;        /* borders */
-      --brand-1:#60a5fa;     /* blue */
-      --brand-2:#22c55e;     /* green */
-      --brand-3:#16a34a;     /* green darker */
-      --accent:#fde047;      /* yellow */
+      --bg:#0b1020;
+      --surface:#0f172a;
+      --text:#e6eefc;
+      --muted:#a5b4fc;
+      --line:#1f2a44;
+      --brand-1:#16a34a;
+      --brand-2:#60a5fa;
+      --brand-3:#22c55e;
     }
-
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
-    img{max-width:100%;display:block}
-    a{color:inherit;text-decoration:none}
+    body{margin:0;font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;overflow-x:hidden}
     h1,h2,h3{margin:0}
-
-    /* Container */
+    a{color:inherit;text-decoration:none}
     .container{max-width:1120px;margin:auto;padding:0 20px}
 
-    /* Top Nav */
-    .nav{position:sticky;top:0;background:rgba(11,16,32,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:50}
-    .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:10px 0}
-    .brand{display:flex;align-items:center;gap:10px;font-weight:800}
-    .brand .dot{width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,var(--brand-1),var(--brand-2));box-shadow:0 0 16px rgba(34,197,94,.6)}
-    .nav-links{display:flex;flex-wrap:wrap;gap:4px}
-    .nav-links a{padding:6px 10px;border-radius:8px;color:var(--muted)}
-    .nav-links a:hover{background:rgba(255,255,255,.06);color:var(--text)}
-    .actions{display:flex;gap:8px}
-    .btn{padding:8px 12px;border-radius:10px;border:1px solid var(--line);cursor:pointer;font-weight:700}
-    .btn.primary{background:linear-gradient(135deg,var(--brand-1),var(--brand-2));color:#062132;border:0}
-    .btn.ghost{background:transparent}
-
-    /* Hero */
-    header.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:center;padding:64px 0;position:relative}
-    @media (max-width:900px){header.hero{grid-template-columns:1fr}}
-    .eyebrow{display:inline-flex;gap:8px;align-items:center;padding:6px 10px;border:1px solid var(--line);border-radius:999px;color:var(--muted);font-weight:600}
-    .eyebrow .pill{display:inline-flex;align-items:center;gap:6px;background:#0b162f;border:1px solid var(--line);padding:4px 8px;border-radius:999px}
-    .hero h1{font-size:40px;letter-spacing:-.02em;margin:12px 0 8px}
-    .hero .lead{color:var(--muted);font-size:18px;max-width:56ch}
-    .metrics{display:flex;flex-wrap:wrap;gap:12px;margin:20px 0}
-    .metric{background:linear-gradient(135deg,#0c1428,#0a1b34);border:1px solid var(--line);padding:12px 14px;border-radius:12px}
-    .metric b{font-size:18px;color:var(--accent)}
-    .hero-visual{display:flex;justify-content:center}
-    .avatar{width:280px;height:280px;border-radius:24px;border:2px solid var(--brand-1);overflow:hidden;box-shadow:0 6px 40px rgba(96,165,250,.25)}
-
-    /* Sections */
-    section{padding:72px 0;border-top:1px solid var(--line)}
-    section.alt{background:var(--surface)}
-    h2.section-title{text-align:center;font-size:28px;margin-bottom:28px}
-    .section-sub{color:var(--muted);text-align:center;margin:-12px 0 28px}
-
-    /* About */
-    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-    @media (max-width:900px){.about-grid{grid-template-columns:1fr}}
-    .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px}
-    .card h3{color:var(--brand-1);margin-bottom:8px;font-size:18px}
-
-    /* Experience */
-    .timeline{display:grid;gap:16px}
-    .tl{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px}
-    .tl .logo{width:42px;height:42px;border-radius:10px;background:linear-gradient(135deg,var(--brand-1),var(--brand-2));display:grid;place-items:center;font-weight:800;color:#062132}
-    .tl .role{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
-    .tl .role h3{font-size:18px;color:var(--brand-2)}
-    .tl .bullets{margin:8px 0 0 0;padding-left:18px}
-    .tl .bullets li{margin:6px 0}
-    .show{margin-top:10px;color:var(--brand-1);cursor:pointer;font-weight:700;font-size:14px}
-    .more{display:none;color:var(--muted)}
-
-    /* Achievements grid */
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
-    .badge{display:inline-flex;gap:8px;align-items:center;padding:6px 10px;border:1px dashed var(--line);border-radius:999px;color:var(--muted);margin-bottom:8px}
-
-    /* Projects (case tiles) */
-    .cases{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
-    .case{background:radial-gradient(1200px 300px at 20% 0%,rgba(96,165,250,.08),transparent),var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;transition:transform .25s ease, box-shadow .25s ease}
-    .case:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(0,0,0,.25)}
-    .case h3{color:var(--brand-1);margin-bottom:6px}
-    .case p{color:var(--muted);margin:6px 0}
-
-    /* Skills clusters */
-    .skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
-    .skill{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px}
-    .progress{height:8px;background:#132244;border-radius:999px;overflow:hidden;margin-top:8px}
-    .bar{width:0;height:100%;background:linear-gradient(90deg,var(--brand-1),var(--brand-2));transition:width 1.3s}
-
-    /* Footer / contact */
-    .contact{display:grid;grid-template-columns:1.2fr .8fr;gap:16px}
-    @media (max-width:900px){.contact{grid-template-columns:1fr}}
-    form{display:grid;gap:10px}
-    input,textarea{padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:#0b1328;color:var(--text)}
-    input:focus,textarea:focus{outline:1px solid var(--brand-1)}
-
-    /* Active nav highlight */
-    .active{background:rgba(255,255,255,.06)!important;color:var(--text)!important}
-
-    /* Print (1‑page resume export) */
-    @media print{
-      .nav,.actions,.hero-visual,.contact form{display:none}
-      body{background:#fff;color:#000}
-      section,header.hero{padding:16px 0}
-      .card,.tl,.case,.skill{border:0}
+    /* Nav Styling */
+    .nav {
+      position: sticky;
+      top: 0;
+      background: rgba(11,16,32,.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+      z-index: 50;
     }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+    }
+    .brand {
+      font-weight: 800;
+      font-size: 20px;
+      color: var(--brand-2);
+      letter-spacing: -0.5px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 16px;
+    }
+    .nav-links a {
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-weight: 500;
+      color: var(--muted);
+      transition: all .2s ease;
+    }
+    .nav-links a:hover,
+    .nav-links a.active {
+      background: linear-gradient(135deg,var(--brand-2),var(--brand-3));
+      color: #062132;
+    }
+    .btn {
+      padding: 8px 14px;
+      border-radius: 8px;
+      border: 0;
+      cursor: pointer;
+      font-weight: 600;
+      transition: transform .2s ease;
+    }
+    .btn.primary {
+      background: linear-gradient(135deg,var(--brand-2),var(--brand-3));
+      color: #062132;
+    }
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+    @media (max-width:768px) {
+      .nav-inner {flex-wrap: wrap; gap: 10px;}
+      .nav-links {flex: 1; justify-content: center; flex-wrap: wrap;}
+    }
+
+    .hero{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;padding:80px 20px;position:relative;overflow:hidden}
+    .hero-text{flex:1;min-width:280px;}
+    .title{font-size:42px;font-weight:800;margin:10px 0}
+    .subtitle{color:var(--muted);font-size:18px;max-width:500px}
+    .typewriter{border-right:2px solid var(--brand-2);white-space:nowrap;overflow:hidden;animation:typing 4s steps(40,end) infinite alternate, blink .8s infinite}
+    @keyframes typing{from{width:0}to{width:100%}}
+    @keyframes blink{50%{border-color:transparent}}
+    .hero-img{flex:1;display:flex;justify-content:center;position:relative}
+    .hero-img img{width:280px;height:280px;border-radius:50%;border:4px solid var(--brand-2);box-shadow:0 0 40px rgba(96,165,250,.3)}
+    section{padding:70px 20px;position:relative}
+    section:nth-child(even){background:var(--surface)}
+    h2{font-size:30px;margin-bottom:30px;text-align:center}
+    .about-grid{display:grid;grid-template-columns:1fr;gap:30px;align-items:start}
+    .card{background:var(--surface);padding:20px;border-radius:12px;border:1px solid var(--line)}
+    .card h3{margin-bottom:10px;color:var(--brand-2)}
+    .timeline{margin-top:20px}
+    .tl-item{margin-bottom:20px;padding:20px;background:var(--surface);border-radius:10px;border:1px solid var(--line)}
+    .tl-item h3{margin-bottom:8px;color:var(--brand-3)}
+    .more{display:none;margin-top:10px;color:var(--muted)}
+    .show-btn{color:var(--brand-2);cursor:pointer;font-size:14px;margin-top:8px;display:inline-block}
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+    .flip-card{background:transparent;width:100%;height:220px;perspective:1000px}
+    .flip-inner{position:relative;width:100%;height:100%;transition:transform 0.6s;transform-style:preserve-3d}
+    .flip-card:hover .flip-inner{transform:rotateY(180deg)}
+    .flip-front,.flip-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;border:1px solid var(--line);border-radius:12px;display:flex;align-items:center;justify-content:center;padding:20px;text-align:center}
+    .flip-front{background:var(--bg)}
+    .flip-back{background:var(--surface);transform:rotateY(180deg)}
+    .skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px}
+    .skill{background:var(--surface);padding:15px;border-radius:10px}
+    .progress{background:#1f2a44;border-radius:6px;overflow:hidden;margin-top:8px}
+    .progress-bar{height:8px;width:0;background:linear-gradient(90deg,var(--brand-2),var(--brand-3));transition:width 1.5s}
+    form{display:flex;flex-direction:column;gap:12px;max-width:400px}
+    input,textarea{padding:10px;border-radius:6px;border:1px solid var(--line);background:#0b1328;color:var(--text)}
+    input:focus,textarea:focus{outline:1px solid var(--brand-2)}
   </style>
 </head>
 <body>
-  <!-- Nav -->
   <nav class="nav">
     <div class="nav-inner container">
-      <div class="brand"><span class="dot"></span> Archit Dasgupta</div>
-      <div class="nav-links" id="navLinks">
+      <div class="brand">Archit Dasgupta</div>
+      <div class="nav-links">
         <a href="#about">About</a>
         <a href="#experience">Experience</a>
         <a href="#achievements">Achievements</a>
         <a href="#por">Leadership</a>
-        <a href="#live">Social Project</a>
+        <a href="#social">Social</a>
         <a href="#projects">Projects</a>
         <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
       </div>
-      <div class="actions">
-        <a class="btn ghost" href="#contact">Let’s talk</a>
-        <a class="btn primary" href="Archit_Dasgupta_1.pdf" download>Download CV</a>
-      </div>
+      <a class="btn primary" href="Archit_Dasgupta_1.pdf" download>Download CV</a>
     </div>
   </nav>
 
-  <!-- Hero -->
-  <header class="hero container" id="home">
-    <div>
-      <span class="eyebrow">MBA @ BITSoM <span class="pill">Ex‑Bosch</span> <span class="pill">Finance & Strategy</span></span>
-      <h1>Turning complex systems into simple, scalable products.</h1>
-      <p class="lead">I blend engineering depth with business rigor to ship high‑impact, data‑driven solutions — from cutting 42% costs with virtual testing at Bosch to building SEBI‑compliant valuation models during my finance internship.</p>
-      <div class="metrics">
-        <div class="metric"><b>42%</b> cost reduction</div>
-        <div class="metric"><b>25%</b> faster delivery</div>
-        <div class="metric"><b>₹120Bn</b> market modeled</div>
-        <div class="metric"><b>22</b> speaking sessions led</div>
-      </div>
-      <div class="actions">
-        <a class="btn primary" href="#experience">View Experience</a>
-        <a class="btn ghost" href="#projects">See Projects</a>
-      </div>
+  <header class="hero container">
+    <div class="hero-text">
+      <h1 class="title">Hi, I’m Archit</h1>
+      <h2 class="typewriter">I turn complex systems into simple, scalable products.</h2>
+      <p class="subtitle">MBA @ BITSoM | Ex-Bosch Engineer | Finance & Analytics Enthusiast</p>
     </div>
-    <div class="hero-visual">
-      <div class="avatar">
-        <!-- Replace the src with your actual photo path -->
-        <img src="Picture_Official.jpg" alt="Archit headshot" />
-      </div>
+    <div class="hero-img">
+      <img src="img/Picture.jpg" alt="Archit" />
     </div>
   </header>
 
-  <!-- About -->
-  <section id="about" class="alt">
-    <div class="container">
-      <h2 class="section-title">About Me</h2>
-      <p class="section-sub">Engineer‑turned‑MBA who enjoys hard problems, clean execution, and measurable impact.</p>
-      <div class="about-grid">
-        <div class="card">
-          <h3>Profile</h3>
-          <p>I’m an MBA candidate (Class of 2026) at BITSoM, formerly a Senior Engineer at Bosch. I like building systems that scale — whether that’s accelerating delivery with automation, or translating messy business requirements into crisp, testable models. Curious by nature, calm under pressure, and serious about craft.</p>
-        </div>
-        <div class="card">
-          <h3>Education</h3>
-          <ul style="margin:0;padding-left:18px">
-            <li><b>MBA</b> — BITS School of Management (BITSoM), Mumbai — <i>2024–26</i></li>
-            <li><b>B.Tech (Instrumentation)</b> — Manipal Institute of Technology — <i>CGPA 8.04/10</i></li>
-            <li><b>CBSE X</b> — CGPA 10/10 (Top 7% of 1.3M+)</li>
-          </ul>
-        </div>
+  <section id="about">
+    <h2>About Me</h2>
+    <div class="about-grid container">
+      <div class="card">
+        <h3>Who I Am</h3>
+        <p>I am an MBA candidate at BITSoM with a background in automotive engineering from Bosch. I enjoy solving complex problems, building scalable solutions, and bridging business with technology. My journey has been shaped by curiosity, adaptability, and continuous improvement.</p>
+      </div>
+      <div class="card">
+        <h3>Education</h3>
+        <p><strong>MBA</strong> — BITS School of Management (BITSoM), Mumbai (Class of 2026)</p>
+        <p><strong>B.Tech (Instrumentation)</strong> — Manipal Institute of Technology</p>
       </div>
     </div>
   </section>
 
-  <!-- Experience -->
   <section id="experience">
+    <h2>Work Experience</h2>
     <div class="container">
-      <h2 class="section-title">Experience</h2>
-      <p class="section-sub">Impact up front. Details on demand.</p>
-      <div class="timeline">
-        <!-- Bosch -->
-        <article class="tl">
-          <div class="logo">B</div>
-          <div>
-            <div class="role">
-              <h3>Bosch Global Software — Senior Engineer</h3>
-              <span>Sep 2021 – Jul 2024 • Bangalore</span>
-            </div>
-            <ul class="bullets">
-              <li><b>Cut 42% costs</b> via advanced simulations replacing hardware test setups.</li>
-              <li><b>25% faster delivery</b> by automating 9 vehicle tests; saved 1,024 hours.</li>
-              <li><b>Scaled virtual vehicle test setup</b> to <i>30 teams</i> by unifying 20 core modules.</li>
-            </ul>
-            <div class="show" onclick="toggleMore(this)">Show more</div>
-            <div class="more">
-              <ul class="bullets">
-                <li>Led engine torque module for 2 years; delivered 15 designs across 6+ OEMs.</li>
-                <li>Reviewer for 16 releases; ensured 100% compliance with auto quality standards.</li>
-                <li>Mentored 3 associates; created training for faster onboarding.</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-
-        <!-- B2K Analytics -->
-        <article class="tl">
-          <div class="logo">F</div>
-          <div>
-            <div class="role">
-              <h3>B2K Analytics — Financial Analyst (Summer Intern)</h3>
-              <span>Apr 2025 – May 2025 • Mumbai</span>
-            </div>
-            <ul class="bullets">
-              <li><b>Built MLD pricing models</b> covering a ₹120Bn structured debt market.</li>
-              <li><b>Back‑tested 4 tranches</b> worth ₹1.9Bn; improved model TAT by <b>86%</b>.</li>
-              <li>Drafted <b>SEBI‑compliant methodology</b> for AMFI empanelment; automated reporting.</li>
-            </ul>
-          </div>
-        </article>
+      <div class="tl-item">
+        <h3>Bosch Global Software • Senior Engineer</h3>
+        <p>Cut project cost by 42% via simulations replacing hardware and automated vehicle tests for 25% faster delivery.</p>
+        <span class="show-btn" onclick="toggleMore(this)">Show more</span>
+        <div class="more">
+          <p>Ensured 100% compliance in 16 releases.</p>
+          <p>Mentored 3 associates and collaborated with international teams.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <h3>B2K Analytics • Finance Intern</h3>
+        <p>Built MLD valuation models covering a ₹120Bn market and improved model TAT by 86%.</p>
+        <span class="show-btn" onclick="toggleMore(this)">Show more</span>
+        <div class="more">
+          <p>Authored SEBI-compliant methodology for AMFI empanelment.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Achievements -->
-  <section id="achievements" class="alt">
+  <section id="achievements">
+    <h2>Achievements</h2>
     <div class="container">
-      <h2 class="section-title">Achievements & Recognition</h2>
-      <div class="grid">
-        <div class="card"><span class="badge">🏆 Professional</span><h3>Best Young Associate</h3><p>Top 1/50 at Bosch for potential & performance.</p></div>
-        <div class="card"><span class="badge">🎖️ Professional</span><h3>Tech Wizard Award</h3><p>6/200 for leading 28 vehicle feature deliveries across 30 OEMs.</p></div>
-        <div class="card"><span class="badge">📚 Academic</span><h3>CBSE X — CGPA 10</h3><p>Top 7% among 1.3M+ students; runner‑up in Astronomy Olympiad.</p></div>
-      </div>
+      <div class="card"><h3>Best Young Associate</h3><p>Awarded top 1/50 at Bosch for potential & performance.</p></div>
+      <div class="card"><h3>Tech Wizard Award</h3><p>Recognized 6/200 for leading 28 vehicle feature deliveries across 30 OEMs.</p></div>
+      <div class="card"><h3>Academics</h3><p>CBSE X: CGPA 10 (Top 7% of 1.3M+); Runner-up in Astronomy Olympiad at MIT.</p></div>
     </div>
   </section>
 
-  <!-- Leadership / POR -->
   <section id="por">
+    <h2>Positions of Responsibility</h2>
     <div class="container">
-      <h2 class="section-title">Leadership</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>Vice President — Public Speaking Club (Bosch)</h3>
-          <p>Ran <b>22</b> sessions for 40+ members; organized 2 open houses; improved org‑wide communication.</p>
-        </div>
-        <div class="card">
-          <h3>Senior Member — Consulting Club (BITSoM)</h3>
-          <p>Delivered a guesstimates session to <b>75+</b> MBA students; helped launch the club’s first case comp with <b>500+</b> registrations.</p>
-        </div>
-        <div class="card">
-          <h3>Sponsorships — Conclave & Fest (BITSoM)</h3>
-          <p>Onboarded Fortis as health partner; secured <b>₹1L+</b> sponsorships; negotiated stays with 2 hotel partners.</p>
-        </div>
+      <div class="card"><h3>Vice President • Public Speaking Club (Bosch)</h3><p>Led 22 sessions for 40+ members; organized 2 open houses; improved org-wide communication.</p></div>
+      <div class="card"><h3>Mentor • Bosch</h3><p>Guided 3 junior associates, enabling faster onboarding and skill development.</p></div>
+    </div>
+  </section>
+
+  <section id="social">
+    <h2>Social Live Project</h2>
+    <div class="container">
+      <div class="card">
+        <p>Designed GTM to install mini-libraries in local businesses. Generated 20 leads, installed 2 libraries, and initiated a Central Bank of India tie-up for scaling the project.</p>
       </div>
     </div>
   </section>
 
-  <!-- Social / Live Project -->
-  <section id="live" class="alt">
-    <div class="container">
-      <h2 class="section-title">Social Project — Ratna Nidhi Charitable Trust</h2>
-      <div class="cases">
-        <div class="case">
-          <h3>Mini‑Libraries GTM</h3>
-          <p>Devised GTM to install mini‑libraries in local businesses to promote reading in underserved areas.</p>
-          <p><b>Impact:</b> 20 leads → 2 libraries installed → bank tie‑up initiated for scale.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Projects / Case Tiles -->
   <section id="projects">
-    <div class="container">
-      <h2 class="section-title">Selected Projects</h2>
-      <div class="cases">
-        <div class="case">
-          <h3>Virtual Vehicle Test Platform</h3>
-          <p>Unified 20 modules; pilot adopted by 30 teams. Reduced reliance on hardware benches.</p>
+    <h2>Projects</h2>
+    <div class="cards container">
+      <div class="flip-card">
+        <div class="flip-inner">
+          <div class="flip-front">Virtual Vehicle Test Setup</div>
+          <div class="flip-back">Unified 20 modules, pilot platform used by 30 teams.</div>
         </div>
-        <div class="case">
-          <h3>Equity Research — Two‑Wheelers</h3>
-          <p>Built 3 valuation models and a detailed report (e.g., Hero MotoCorp) with industry benchmarking.</p>
+      </div>
+      <div class="flip-card">
+        <div class="flip-inner">
+          <div class="flip-front">Equity Research</div>
+          <div class="flip-back">Built 3 valuation models, report on Hero MotoCorp.</div>
         </div>
-        <div class="case">
-          <h3>Public Speaking Ops</h3>
-          <p>Program‑managed 22 speaking sessions; standardized agendas, feedback, and onboarding.</p>
+      </div>
+      <div class="flip-card">
+        <div class="flip-inner">
+          <div class="flip-front">Public Speaking VP</div>
+          <div class="flip-back">Ran 22 sessions, improved org-wide comms at Bosch.</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Skills / Certifications / Activities -->
-  <section id="skills" class="alt">
-    <div class="container">
-      <h2 class="section-title">Skills & Certifications</h2>
-      <div class="skills">
-        <div class="skill">
-          <h3>Technical</h3>
-          <p>Python, R, SQL, Tableau, Excel, C/C++, Embedded C, AUTOSAR, HTML/CSS/JS, Git/Jira</p>
-          <div class="progress"><div class="bar" data-val="88"></div></div>
-        </div>
-        <div class="skill">
-          <h3>Finance</h3>
-          <p>Valuation, Financial Modeling, Monte Carlo (MLDs), Back‑testing, Dashboarding</p>
-          <div class="progress"><div class="bar" data-val="86"></div></div>
-        </div>
-        <div class="skill">
-          <h3>Leadership</h3>
-          <p>Mentoring, Stakeholder Mgmt, Public Speaking, Program Ops</p>
-          <div class="progress"><div class="bar" data-val="82"></div></div>
-        </div>
-        <div class="skill">
-          <h3>Certifications</h3>
-          <p>Lean Six Sigma — Green Belt; Data Science & R Programming; Python & Web Design</p>
-        </div>
-      </div>
-
-      <h2 class="section-title" style="margin-top:34px">Extracurricular</h2>
-      <div class="grid">
-        <div class="card"><h3>Badminton — Runner‑up</h3><p>Men’s Singles (2/64), Bosch intra‑office tournament.</p></div>
-        <div class="card"><h3>TCS World 10k</h3><p>Completed 5k run among 27,000+ participants.</p></div>
-        <div class="card"><h3>Astronomy Olympiad</h3><p>Ranked 2/30 at MIT; led workshops for 200+ participants.</p></div>
-      </div>
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills container">
+      <div class="skill"><strong>Python</strong><div class="progress"><div class="progress-bar" data-skill="90"></div></div></div>
+      <div class="skill"><strong>Excel</strong><div class="progress"><div class="progress-bar" data-skill="85"></div></div></div>
+      <div class="skill"><strong>Financial Modeling</strong><div class="progress"><div class="progress-bar" data-skill="80"></div></div></div>
+      <div class="skill"><strong>Embedded C</strong><div class="progress"><div class="progress-bar" data-skill="75"></div></div></div>
     </div>
   </section>
 
-  <!-- Contact -->
   <section id="contact">
+    <h2>Contact</h2>
     <div class="container">
-      <h2 class="section-title">Contact</h2>
-      <div class="contact">
-        <div class="card">
-          <h3>Let’s connect</h3>
-          <p>If you’re hiring for Consulting / Strategy / Finance roles, I’d love to chat.</p>
-          <p><b>Email:</b> archit@example.com • <b>Location:</b> Mumbai</p>
-          <p>
-            <a class="btn primary" href="mailto:archit@example.com">Email Me</a>
-            <a class="btn ghost" href="Archit_Dasgupta_1.pdf" download>Download CV</a>
-          </p>
-        </div>
-        <div class="card">
-          <form onsubmit="event.preventDefault(); alert('Thanks! I\'ll get back to you.');">
-            <input type="text" placeholder="Your Name" required>
-            <input type="email" placeholder="Your Email" required>
-            <textarea rows="4" placeholder="Message"></textarea>
-            <button class="btn primary" type="submit">Send</button>
-          </form>
-        </div>
-      </div>
+      <form>
+        <input type="text" placeholder="Your Name" required />
+        <input type="email" placeholder="Your Email" required />
+        <textarea rows="4" placeholder="Message"></textarea>
+        <button class="btn primary" type="submit">Send</button>
+      </form>
     </div>
   </section>
-
-  <footer class="container" style="padding:32px 0;color:var(--muted)">
-    © <span id="y"></span> Archit Dasgupta • Built with HTML/CSS/JS
-  </footer>
 
   <script>
-    // Year
-    document.getElementById('y').textContent = new Date().getFullYear();
+    const bars=document.querySelectorAll('.progress-bar');
+    const io=new IntersectionObserver(entries=>{
+      entries.forEach(e=>{if(e.isIntersecting){e.target.style.width=e.target.getAttribute('data-skill')+'%';}})
+    },{threshold:0.5});
+    bars.forEach(bar=>io.observe(bar));
 
-    // Intersection observer for skill bars
-    const bars = document.querySelectorAll('.bar');
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{ if(e.isIntersecting){ e.target.style.width = e.target.dataset.val + '%'; }});
-    },{threshold:.4});
-    bars.forEach(b=>io.observe(b));
-
-    // Toggle more in experience
-    function toggleMore(el){
-      const more = el.nextElementSibling;
-      const open = more.style.display==='block';
-      more.style.display = open ? 'none' : 'block';
-      el.textContent = open ? 'Show more' : 'Show less';
+    function toggleMore(btn){
+      const more=btn.nextElementSibling;
+      if(more.style.display==='block'){
+        more.style.display='none';
+        btn.textContent='Show more';
+      }else{
+        more.style.display='block';
+        btn.textContent='Show less';
+      }
     }
-
-    // Active section highlighting
-    const sections = [...document.querySelectorAll('section, header.hero')];
-    const links = [...document.querySelectorAll('#navLinks a')];
-    const spy = new IntersectionObserver((entries)=>{
-      entries.forEach(entry=>{
-        if(entry.isIntersecting){
-          const id = entry.target.id;
-          links.forEach(a=>a.classList.toggle('active', a.getAttribute('href') === `#${id}`));
-        }
-      });
-    },{threshold:.5});
-    sections.forEach(s=>{ if(s.id) spy.observe(s); });
   </script>
 </body>
 </html>
