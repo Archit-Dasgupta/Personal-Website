@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Archit Dasgupta — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b1020;
+      --surface:#0f172a;
+      --text:#e6eefc;
+      --muted:#a5b4fc;
+      --line:#1f2a44;
+      --brand-1:#16a34a;
+      --brand-2:#60a5fa;
+      --brand-3:#22c55e;
+    }
+    body{margin:0;font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;overflow-x:hidden}
+    h1,h2,h3{margin:0}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1120px;margin:auto;padding:0 20px}
+    .nav{position:sticky;top:0;background:rgba(11,16,32,.85);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:10}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:12px}
+    .brand{font-weight:800;font-size:18px;color:var(--brand-2)}
+    .nav-links a{margin:0 8px;padding:6px 10px;border-radius:6px}
+    .nav-links a:hover{background:rgba(255,255,255,.05)}
+    .btn{padding:8px 14px;border-radius:8px;border:0;cursor:pointer;font-weight:600}
+    .btn.primary{background:linear-gradient(135deg,var(--brand-2),var(--brand-3));color:#062132}
+    .hero{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;padding:80px 20px;position:relative;overflow:hidden}
+    .hero-text{flex:1;min-width:280px;}
+    .title{font-size:42px;font-weight:800;margin:10px 0}
+    .subtitle{color:var(--muted);font-size:18px;max-width:500px}
+    .typewriter{border-right:2px solid var(--brand-2);white-space:nowrap;overflow:hidden;animation:typing 4s steps(40,end) infinite alternate, blink .8s infinite}
+    @keyframes typing{from{width:0}to{width:100%}}
+    @keyframes blink{50%{border-color:transparent}}
+    .hero-img{flex:1;display:flex;justify-content:center;position:relative}
+    .hero-img img{width:280px;height:280px;border-radius:50%;border:4px solid var(--brand-2);box-shadow:0 0 40px rgba(96,165,250,.3)}
+    section{padding:70px 20px;position:relative}
+    section:nth-child(even){background:var(--surface)}
+    h2{font-size:30px;margin-bottom:30px;text-align:center}
+    .about-grid{display:grid;grid-template-columns:1fr;gap:30px;align-items:start}
+    .card{background:var(--surface);padding:20px;border-radius:12px;border:1px solid var(--line)}
+    .card h3{margin-bottom:10px;color:var(--brand-2)}
+    .timeline{margin-top:20px}
+    .tl-item{margin-bottom:20px;padding:20px;background:var(--surface);border-radius:10px;border:1px solid var(--line)}
+    .tl-item h3{margin-bottom:8px;color:var(--brand-3)}
+    .more{display:none;margin-top:10px;color:var(--muted)}
+    .show-btn{color:var(--brand-2);cursor:pointer;font-size:14px;margin-top:8px;display:inline-block}
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+    .flip-card{background:transparent;width:100%;height:220px;perspective:1000px}
+    .flip-inner{position:relative;width:100%;height:100%;transition:transform 0.6s;transform-style:preserve-3d}
+    .flip-card:hover .flip-inner{transform:rotateY(180deg)}
+    .flip-front,.flip-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;border:1px solid var(--line);border-radius:12px;display:flex;align-items:center;justify-content:center;padding:20px;text-align:center}
+    .flip-front{background:var(--bg)}
+    .flip-back{background:var(--surface);transform:rotateY(180deg)}
+    .skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px}
+    .skill{background:var(--surface);padding:15px;border-radius:10px}
+    .progress{background:#1f2a44;border-radius:6px;overflow:hidden;margin-top:8px}
+    .progress-bar{height:8px;width:0;background:linear-gradient(90deg,var(--brand-2),var(--brand-3));transition:width 1.5s}
+    form{display:flex;flex-direction:column;gap:12px;max-width:400px}
+    input,textarea{padding:10px;border-radius:6px;border:1px solid var(--line);background:#0b1328;color:var(--text)}
+    input:focus,textarea:focus{outline:1px solid var(--brand-2)}
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner container">
+      <div class="brand">Archit Dasgupta</div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#achievements">Achievements</a>
+        <a href="#por">Positions of Responsibility</a>
+        <a href="#social">Social Project</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <a class="btn primary" href="Archit_Dasgupta_1.pdf" download>Download CV</a>
+    </div>
+  </nav>
+
+  <header class="hero container">
+    <div class="hero-text">
+      <h1 class="title">Hi, I’m Archit</h1>
+      <h2 class="typewriter">I turn complex systems into simple, scalable products.</h2>
+      <p class="subtitle">MBA @ BITSoM | Ex-Bosch Engineer | Finance & Analytics Enthusiast</p>
+    </div>
+    <div class="hero-img">
+      <img src="Picture_Official.jpg" alt="Archit" />
+    </div>
+  </header>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <div class="about-grid container">
+      <div class="card">
+        <h3>Who I Am</h3>
+        <p>I am an MBA candidate at BITSoM with a background in automotive engineering from Bosch. I enjoy solving complex problems, building scalable solutions, and bridging business with technology. My journey has been shaped by curiosity, adaptability, and continuous improvement.</p>
+      </div>
+      <div class="card">
+        <h3>Education</h3>
+        <p><strong>MBA</strong> — BITS School of Management (BITSoM), Mumbai (Class of 2026)</p>
+        <p><strong>B.Tech (Instrumentation)</strong> — Manipal Institute of Technology</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <h2>Work Experience</h2>
+    <div class="container">
+      <div class="tl-item">
+        <h3>Bosch Global Software • Senior Engineer</h3>
+        <p>Cut project cost by 42% via simulations replacing hardware and automated vehicle tests for 25% faster delivery.</p>
+        <span class="show-btn" onclick="toggleMore(this)">Show more</span>
+        <div class="more">
+          <p>Ensured 100% compliance in 16 releases.</p>
+          <p>Mentored 3 associates and collaborated with international teams.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <h3>B2K Analytics • Finance Intern</h3>
+        <p>Built MLD valuation models covering a ₹120Bn market and improved model TAT by 86%.</p>
+        <span class="show-btn" onclick="toggleMore(this)">Show more</span>
+        <div class="more">
+          <p>Authored SEBI-compliant methodology for AMFI empanelment.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="achievements">
+    <h2>Achievements</h2>
+    <div class="container">
+      <div class="card"><h3>Best Young Associate</h3><p>Awarded top 1/50 at Bosch for potential & performance.</p></div>
+      <div class="card"><h3>Tech Wizard Award</h3><p>Recognized 6/200 for leading 28 vehicle feature deliveries across 30 OEMs.</p></div>
+      <div class="card"><h3>Academics</h3><p>CBSE X: CGPA 10 (Top 7% of 1.3M+); Runner-up in Astronomy Olympiad at MIT.</p></div>
+    </div>
+  </section>
+
+  <section id="por">
+    <h2>Positions of Responsibility</h2>
+    <div class="container">
+      <div class="card"><h3>Vice President • Public Speaking Club (Bosch)</h3><p>Led 22 sessions for 40+ members; organized 2 open houses; improved org-wide communication.</p></div>
+      <div class="card"><h3>Mentor • Bosch</h3><p>Guided 3 junior associates, enabling faster onboarding and skill development.</p></div>
+    </div>
+  </section>
+
+  <section id="social">
+    <h2>Social Live Project</h2>
+    <div class="container">
+      <div class="card">
+        <p>Designed GTM to install mini-libraries in local businesses. Generated 20 leads, installed 2 libraries, and initiated a Central Bank of India tie-up for scaling the project.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="cards container">
+      <div class="flip-card">
+        <div class="flip-inner">
+          <div class="flip-front">Virtual Vehicle Test Setup</div>
+          <div class="flip-back">Unified 20 modules, pilot platform used by 30 teams.</div>
+        </div>
+      </div>
+      <div class="flip-card">
+        <div class="flip-inner">
+          <div class="flip-front">Equity Research</div>
+          <div class="flip-back">Built 3 valuation models, report on Hero MotoCorp.</div>
+        </div>
+      </div>
+      <div class="flip-card">
+        <div class="flip-inner">
+          <div class="flip-front">Public Speaking VP</div>
+          <div class="flip-back">Ran 22 sessions, improved org-wide comms at Bosch.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills container">
+      <div class="skill"><strong>Python</strong><div class="progress"><div class="progress-bar" data-skill="90"></div></div></div>
+      <div class="skill"><strong>Excel</strong><div class="progress"><div class="progress-bar" data-skill="85"></div></div></div>
+      <div class="skill"><strong>Financial Modeling</strong><div class="progress"><div class="progress-bar" data-skill="80"></div></div></div>
+      <div class="skill"><strong>Embedded C</strong><div class="progress"><div class="progress-bar" data-skill="75"></div></div></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <div class="container">
+      <form>
+        <input type="text" placeholder="Your Name" required />
+        <input type="email" placeholder="Your Email" required />
+        <textarea rows="4" placeholder="Message"></textarea>
+        <button class="btn primary" type="submit">Send</button>
+      </form>
+    </div>
+  </section>
+
+  <script>
+    const bars=document.querySelectorAll('.progress-bar');
+    const io=new IntersectionObserver(entries=>{
+      entries.forEach(e=>{if(e.isIntersecting){e.target.style.width=e.target.getAttribute('data-skill')+'%';}})
+    },{threshold:0.5});
+    bars.forEach(bar=>io.observe(bar));
+
+    function toggleMore(btn){
+      const more=btn.nextElementSibling;
+      if(more.style.display==='block'){
+        more.style.display='none';
+        btn.textContent='Show more';
+      }else{
+        more.style.display='block';
+        btn.textContent='Show less';
+      }
+    }
+  </script>
+</body>
+</html>
